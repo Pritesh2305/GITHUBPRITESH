@@ -1,0 +1,103 @@
+﻿@model ajaxform.Models.EMP
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+<div id="LoaderImage" style="display:none;">
+    <img src="~/Images/Loading.gif" height="100" width="100" />
+</div>
+<div id="DivUpdate" class="alert alert-success">
+
+</div>
+
+@using (Ajax.BeginForm("Create", "Home",
+            new AjaxOptions()
+            {
+                HttpMethod = "POST",
+                InsertionMode = InsertionMode.Replace,
+                UpdateTargetId = "DivUpdate",
+                LoadingElementId = "LoaderImage",
+                LoadingElementDuration = 1000,
+                Confirm = "Are You Sure to Insert Data ?",
+                OnComplete="ClearFields",
+
+            }))
+
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>EMP</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.FIRSTNAME, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FIRSTNAME, new { htmlAttributes = new { @class = "form-control", id = "txtfirstname" } })
+                @Html.ValidationMessageFor(model => model.FIRSTNAME, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.LASTNAME, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LASTNAME, new { htmlAttributes = new { @class = "form-control", id = "txtlastname" } })
+                @Html.ValidationMessageFor(model => model.LASTNAME, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EMPCODE, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.EMPCODE, new { htmlAttributes = new { @class = "form-control", id = "txtempcode" } })
+                @Html.ValidationMessageFor(model => model.EMPCODE, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.POSITION, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.POSITION, new { htmlAttributes = new { @class = "form-control", id = "txtposition" } })
+                @Html.ValidationMessageFor(model => model.POSITION, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.OFFICE, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.OFFICE, new { htmlAttributes = new { @class = "form-control", id = "txtoffice" } })
+                @Html.ValidationMessageFor(model => model.OFFICE, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Insert" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+    <p>
+        @Html.ActionLink("List", "Index")
+    </p>
+
+<script type="text/javascript">
+    function ClearFields()
+    {
+        document.getElementById('txtfirstname').value = "";
+        document.getElementById('txtoffice').value = "";
+        document.getElementById('txtposition').value = "";
+        document.getElementById('txtempcode').value = "";
+        document.getElementById('txtlastname').value = "";        
+    }
+
+</script>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>

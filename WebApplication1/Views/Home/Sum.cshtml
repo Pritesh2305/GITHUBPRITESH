@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Sum";
+    Layout = null;
+}
+
+<h2>Sum</h2>
+
+<form>
+    @Html.TextBox("Value A", "a")
+    @Html.TextBox("Value B", "a")
+    <input type="submit" name="Sum" formmethod="post" value="submit" formaction="~\Home\Sumresult" />
+</form>
+

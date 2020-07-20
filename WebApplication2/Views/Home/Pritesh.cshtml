@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "Pritesh";
+    //Layout = null;
+}
+
+@Html.ActionLink("Index Page 1", "Index", "Home")
+<br />
+<a href="@Url.Action("Index","Home")">Index Page 2</a>
+<h2>Pritesh</h2>
+<div>
+    <p>Temp data : @TempData["d1"]</p>
+    <p>
+        <!-- INLINE EXPRESSION -->
+        Today Date and Time is : @DateTime.Now.ToString("dd/MM/yy hh:mm")
+    </p>
+</div>
+<div>
+    <!-- MULTI LINE EXPRESSION -->
+    @{
+        string name = "pritesh";
+        var a = 10;
+
+    }
+    <h1>@name </h1>
+    <h2> @a </h2>
+</div>
+
+<div>
+    <!-- conditional statement -->
+    @{
+        int mark1 = 40;
+        if (mark1 >= 50)
+        {
+            <h2>your grade is a1</h2>
+        }
+        else
+        {
+            <h2>your grade is a</h2>
+        }
+    }
+
+    @{
+        int length = 10;
+        for (int i = 0; i < length; i++)
+        {
+            <h2>Print  Value @i</h2>
+        }
+
+        string[] sports = { "a", "b", "c" };
+        foreach (var item in sports)
+        {
+            <h2> Sports is @item</h2>
+        }
+    }
+
+    @*HTML Control*@
+
+    @Html.BeginForm("Index", "Home", FormMethod.Post)
+    {
+    @Html.TextBox("Name", "Pritesh", new { @class = "form-control" })
+    @Html.Password("Name1", "", new { @class = "form-control" })
+    @Html.CheckBox("Accept") &nbsp; @Html.Label("I Accept Term")
+    <br />
+    @Html.Label("Male")  &nbsp;  @Html.RadioButton("G", "Male", true)
+    @Html.Label("Female")  &nbsp;@Html.RadioButton("G", "Female")
+    @Html.Hidden("id")
+    @Html.TextArea("ta", "", 5, 5, new { @class = "form-control" })
+
+    <input type="submit" value="submit" class="form-control" />
+
+
+</div>

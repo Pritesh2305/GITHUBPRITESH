@@ -1,0 +1,80 @@
+﻿@model IEnumerable<ajaxform.Models.EMP>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div id="LoaderImage" style="display:none;">
+    <img src="~/Images/Loading.gif" height="50" width="50" />
+</div>
+<div id="divupdate">
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FIRSTNAME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LASTNAME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EMPCODE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.POSITION)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OFFICE)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FIRSTNAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LASTNAME)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EMPCODE)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.POSITION)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OFFICE)
+                </td>
+            </tr>
+        }
+        <tr>
+            <td colspan="7" align="center">
+                @Ajax.ActionLink("Load More","Index","Paging",
+                                new AjaxOptions
+                                {
+                                    HttpMethod="POST",
+                                    InsertionMode=InsertionMode.Replace,
+                                    UpdateTargetId = "divupdate",
+                                    LoadingElementId= "LoaderImage",
+                                },
+                                new { @class="btn btn-info"}
+                                )
+            </td>
+        </tr>
+
+    </table>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+

@@ -1,0 +1,125 @@
+﻿@model IEnumerable<ajaxform.Models.EMP>
+
+@{
+                /**/
+
+                ViewBag.Title = "Index";
+}
+
+
+<h2>LIST</h2>
+@Ajax.ActionLink("All Employee","Allemp","Home",
+                    new AjaxOptions()
+                    { 
+                        HttpMethod="GET",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "divupdate",
+                        LoadingElementId = "LoaderImage",
+                        LoadingElementDuration = 1000,
+                    },
+                     new { @class = "btn btn-info" }
+                    )
+<span style="color:red;">--</span>
+@Ajax.ActionLink("Reset","Empreset","Home",
+                    new AjaxOptions()
+                    {
+                        HttpMethod="GET",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "divupdate",
+                        LoadingElementId = "LoaderImage",
+                        LoadingElementDuration = 1000,
+                    },
+                    new { @class = "btn btn-warning" }
+                    )
+
+<div id="divupdate">
+
+</div>
+
+
+@using (Ajax.BeginForm("Index", "Home",
+    new AjaxOptions()
+    {
+        HttpMethod = "POST",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "divupdate",
+        LoadingElementId = "LoaderImage",
+        LoadingElementDuration = 1000,
+    }
+    ))
+{
+    <label>Search by Firstname</label>
+    <input type="text" name="txtsearch" id="txtsearch" />
+    <input type="submit" value="Search" />
+}
+<div id="LoaderImage" style="display:none;">
+    <img src="~/Images/Loading.gif" height="50" width="50" />
+</div>
+<div id="divupdate">
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FIRSTNAME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LASTNAME)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EMPCODE)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.POSITION)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OFFICE)
+            </th>
+            <th></th>
+        </tr>
+
+        @if (Model.Count() <= 0)
+        {
+            <tr>
+                <td colspan="5">
+                    No Rows Found...
+                </td>
+            </tr>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FIRSTNAME)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LASTNAME)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EMPCODE)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.POSITION)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OFFICE)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.RID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.RID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.RID })
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>

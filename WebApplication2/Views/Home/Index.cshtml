@@ -1,0 +1,87 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+
+    <div>
+        <nav>
+            <ul>
+                <li>@Html.ActionLink("Index", "Index", "Home")</li>
+                <li>@Html.ActionLink("Pritesh Page", "Pritesh", "Home")</li>
+                <li>@Html.ActionLink("Viewdata Page", "Viewdatademo", "Home")</li>
+            </ul>
+        </nav>
+    </div>
+
+    <div>
+        <h1> HOME/INDEX </h1>
+        <h2>@ViewData["m1"]</h2>
+        <h2>@ViewData["m2"]</h2>
+    </div>
+
+    @{
+        string[] fa = (string[])ViewData["fa"];
+
+        foreach (var i in fa)
+        {
+            <li>Fruis is : @i</li>
+        }
+
+    }
+
+    @{
+        List<string> splist = (List<string>)ViewData["sportslist"];
+
+        foreach (var i in splist)
+        {
+            <ol>sports is : @i</ol>
+        }
+    }
+
+    <div>
+        @{
+            var a = (WebApplication2.Models.Employee)ViewData["emp"];
+        }
+        <p>@a.Empid </p>
+        <p>@a.Empname  </p>
+        <p>@a.Empdesignation  </p>
+
+    </div>
+
+    <div>
+        <h1>view bag</h1>
+        <h2>@ViewBag.Message</h2>
+    </div>
+    @{
+        foreach (var item in ViewBag.splist1)
+        {
+            <li>@item</li>
+        }
+
+        var b = ViewBag.emp1;
+
+
+    }
+    <p>@b.Empid </p>
+    <p>@b.Empname  </p>
+    <p>@b.Empdesignation  </p>
+
+    <p>@ViewData["commondata"]</p>
+    <p>@ViewBag.commondata</p>
+
+    <p>@ViewData["commondata1"]</p>
+    <p>@ViewBag.commondata1</p>
+
+    <p>Temp data : @TempData["d1"]</p>
+
+</body>
+</html>

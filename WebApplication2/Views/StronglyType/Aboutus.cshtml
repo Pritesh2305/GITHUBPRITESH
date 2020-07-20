@@ -1,0 +1,27 @@
+﻿@model List<WebApplication2.Models.Employee>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Aboutus</title>
+</head>
+<body>
+    <div>
+        <ul>
+            @{
+                foreach (var i in Model)
+                {
+                    <li>@i.Empid</li>
+                    <li>@i.Empname</li>
+                    <li>@i.Empdesignation</li>
+                }
+            }
+        </ul>
+    </div>
+</body>
+</html>

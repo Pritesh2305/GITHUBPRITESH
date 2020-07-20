@@ -1,0 +1,24 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>PartialViewDemo</title>
+</head>
+<body>
+    <div> 
+        @Html.Partial("_EmployeeList");
+        
+    </div>
+    </br>
+
+    @{ 
+        Html.RenderPartial("_EmployeeList");        
+    }
+</body>
+</html>

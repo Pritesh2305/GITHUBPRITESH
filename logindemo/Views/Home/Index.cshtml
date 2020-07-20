@@ -1,0 +1,43 @@
+﻿@model logindemo.Models.EMP
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Welcome @Session["loginusername"] </h2>
+<h2>@Session["loginuserrid"]</h2>
+
+@Html.ActionLink("Logout", "Logout", "Home")
+<br />
+<br />
+@Html.ActionLink("Add", "Add", "Home")
+
+<div class="container">
+    <table border="1">
+        <thead>
+            <TR>RID</TR>
+            <tr>FIRSTNAME</tr>
+            <tr>LASTNAME</tr>
+        </thead>
+        @{
+            foreach (var i in @ViewBag.emplist)
+            {
+        <tr>
+            <td>@i.RID</td>
+            <td>@i.FIRSTNAME</td>
+            <td>@i.LASTNAME</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = @i.RID }) |
+                @Html.ActionLink("Details", "Details", new { id = @i.RID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = @i.RID })
+            </td>
+        </tr>
+            }
+        }
+
+
+    </table>
+
+</div>
+
+
