@@ -11,6 +11,7 @@ namespace WebApplication5.Controllers
         // GET: Home
         public ActionResult Index()
         {
+            int i;
             return View();
         }
     }
